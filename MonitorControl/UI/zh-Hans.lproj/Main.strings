@@ -238,6 +238,9 @@
 /* Class = "NSTextFieldCell"; title = "Screen to control:"; ObjectID = "ltL-gR-K3Z"; */
 "ltL-gR-K3Z.title" = "控制的显示器：";
 
+/* Class = "NSTextFieldCell"; title = "Input Source:"; ObjectID = "lYU-jz-Obc"; */
+"FZ3-Ft-QFB.title" = "显示器输入源：";
+
 /* Class = "NSTextFieldCell"; title = "Control your external displays brightness, contrast and volume directly from your Mac, using menulet sliders or the keyboard, including native Apple keys."; ObjectID = "Mh5-1A-apq"; */
 "Mh5-1A-apq.title" = "使用菜单上的滑杆或者键盘（支持Apple原生快捷键），直接从Mac控制外接显示器的亮度、对比度和音量。";
 
