@@ -85,6 +85,7 @@ class DisplaysPrefsViewController: NSViewController, PreferencePane, NSTableView
     var displayImage = ""
     var controlMethod = ""
     var controlStatus = ""
+    var inputSource = ""
   }
 
   public static func getDisplayInfo(display: Display) -> DisplayInfo {
@@ -150,6 +151,7 @@ class DisplaysPrefsViewController: NSViewController, PreferencePane, NSTableView
     if let cell = tableView.makeView(withIdentifier: tableColumn.identifier, owner: nil) as? DisplaysPrefsCellView {
       cell.display = display
 
+      cell.inputSource.stringValue = String(display.inputSource)
       // ID
       cell.displayId.stringValue = String(display.identifier)
       // Firendly name

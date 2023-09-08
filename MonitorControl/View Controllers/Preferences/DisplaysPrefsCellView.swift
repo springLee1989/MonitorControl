@@ -19,7 +19,8 @@ class DisplaysPrefsCellView: NSTableCellView {
   @IBOutlet var controlMethod: NSTextFieldCell!
   @IBOutlet var displayType: NSTextFieldCell!
   @IBOutlet var disableVolumeOSDButton: NSButton!
-
+  @IBOutlet var inputSource: NSTextFieldCell!
+  
   @IBOutlet var advancedSettings: NSBox!
 
   @IBOutlet var pollingModeMenu: NSPopUpButton!

@@ -31,6 +31,23 @@ class OtherDisplay: Display {
     if !isVirtual, !Arm64DDC.isArm64 {
       self.ddc = IntelDDC(for: identifier)
     }
+    var command_inputSelect: Command
+    command_inputSelect = Command.inputSelect
+    let  firstrun = false
+    var maxDDCValue = UInt16(DDC_MAX_DETECT_LIMIT)
+    var currentValue = UInt16(0)
+    var currentDDCValue = UInt16(0)
+    let delay = self.readPrefAsBool(key: .longerDelay) ? UInt64(40 * kMillisecondScale) : nil
+    var ddcValues: (UInt16, UInt16)?
+    ddcValues = self.readDDCValues(for: .inputSelect, tries: 5, minReplyDelay: delay)
+    if ddcValues != nil {
+      (currentDDCValue, maxDDCValue) = ddcValues ?? (currentDDCValue, maxDDCValue)
+      self.processCurrentDDCValue(isReadFromDisplay: true, command: command_inputSelect, firstrun: firstrun, currentDDCValue: currentDDCValue)
+      os_log("- DDC command_inputSelect read successful.", type: .info)
+      super.inputSource = currentDDCValue
+    } else {
+      os_log("- DDC command_inputSelect read failed.", type: .info)
+    }
   }
 
   func processCurrentDDCValue(isReadFromDisplay: Bool, command: Command, firstrun: Bool, currentDDCValue: UInt16) {

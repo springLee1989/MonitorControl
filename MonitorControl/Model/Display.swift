@@ -11,6 +11,7 @@ class Display: Equatable {
   var vendorNumber: UInt32?
   var modelNumber: UInt32?
   var serialNumber: UInt32?
+  var inputSource: UInt16
   var smoothBrightnessTransient: Float = 1
   var smoothBrightnessRunning: Bool = false
   var smoothBrightnessSlow: Bool = false
@@ -71,6 +72,7 @@ class Display: Equatable {
     self.serialNumber = serialNumber
     self.isVirtual = DEBUG_VIRTUAL ? true : isVirtual
     self.isDummy = isDummy
+    self.inputSource = 0
     self.prefsId = "(\(name.filter { !$0.isWhitespace })\(vendorNumber ?? 0)\(modelNumber ?? 0)@\(self.isVirtual ? (self.serialNumber ?? 9999) : identifier))"
     os_log("Display init with prefsIdentifier %{public}@", type: .info, self.prefsId)
     self.swUpdateDefaultGammaTable()
