@@ -352,4 +352,6 @@ class Display: Equatable {
   func getInputSource() -> UInt16 {
     return UInt16(0)
   }
+  public func writeDDCValues(command: Command, value: UInt16) {
+  }
 }

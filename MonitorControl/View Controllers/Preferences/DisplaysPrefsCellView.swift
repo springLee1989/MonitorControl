@@ -22,6 +22,7 @@ class DisplaysPrefsCellView: NSTableCellView {
   @IBOutlet var inputSource: NSTextFieldCell!
   @IBOutlet var advancedSettings: NSBox!
 
+  @IBOutlet var menuInputSource: NSPopUpButton!
   @IBOutlet var pollingModeMenu: NSPopUpButton!
   @IBOutlet var longerDelayButton: NSButton!
   @IBOutlet var pollingCount: NSTextFieldCell!
@@ -211,6 +212,23 @@ class DisplaysPrefsCellView: NSTableCellView {
     }
   }
 
+  @IBAction func changeInputSourceItem(_ sender: NSPopUpButton) {
+    if let display = display as? OtherDisplay {
+      os_log("- changeInputSourceItem.select = %{public}@", type: .info, String( sender.selectedTag() ))
+      var command_inputSelect: Command
+      command_inputSelect = Command.inputSelect
+      var currentDDCValue = UInt16(18)
+      var selectedTag = sender.selectedTag()
+      switch selectedTag {
+      case 2: currentDDCValue = UInt16(18)
+      case 4: currentDDCValue = UInt16(15)
+      default: currentDDCValue = UInt16(0)
+      }
+      if currentDDCValue != 0 {
+        display.writeDDCValues(command: command_inputSelect, value: currentDDCValue)
+      }
+    }
+  }
   func tagCommand(_ tag: Int) -> Command {
     var command: Command
     switch tag {

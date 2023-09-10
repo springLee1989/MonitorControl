@@ -1891,21 +1891,24 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YGa-73-vwn" userLabel="InputSelect">
+                                                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EYC-UQ-U3W" userLabel="InputSelect">
                                                                     <rect key="frame" x="274" y="345" width="109" height="25"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                    <popUpButtonCell key="cell" type="push" title="DisplayPort" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8k5-he-X72" id="gG6-9z-ygg" userLabel="InputSelect">
+                                                                    <popUpButtonCell key="cell" type="push" title="DisplayPort" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="n5m-Uu-AlI" id="eLK-uP-4Fh" userLabel="InputSelect">
                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="menu"/>
-                                                                        <menu key="menu" id="N9Z-Wx-Nhd">
+                                                                        <menu key="menu" id="CI2-iC-0iH">
                                                                             <items>
-                                                                                <menuItem title="DisplayPort" state="on" id="8k5-he-X72"/>
-                                                                                <menuItem title="HDMI1" tag="1" id="EZo-gh-bJO"/>
-                                                                                <menuItem title="HDMI2" tag="2" id="yiX-Us-RLs"/>
-                                                                                <menuItem title="TypeC" tag="3" id="j6C-gB-obC"/>
+                                                                                <menuItem title="DisplayPort" state="on" tag="1" id="n5m-Uu-AlI"/>
+                                                                                <menuItem title="HDMI1" tag="2" id="ji0-6w-9hU"/>
+                                                                                <menuItem title="HDMI2" tag="3" id="FHV-Ns-jZz"/>
+                                                                                <menuItem title="TypeC" tag="4" id="v0k-9I-QxN"/>
                                                                             </items>
                                                                         </menu>
                                                                     </popUpButtonCell>
+                                                                    <connections>
+                                                                        <action selector="changeInputSourceItem:" target="hCY-wr-B84" id="M5X-2r-Swe"/>
+                                                                    </connections>
                                                                 </popUpButton>
                                                             </subviews>
                                                             <constraints>
