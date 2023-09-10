@@ -20,7 +20,6 @@ class DisplaysPrefsCellView: NSTableCellView {
   @IBOutlet var displayType: NSTextFieldCell!
   @IBOutlet var disableVolumeOSDButton: NSButton!
   @IBOutlet var inputSource: NSTextFieldCell!
-  
   @IBOutlet var advancedSettings: NSBox!
 
   @IBOutlet var pollingModeMenu: NSPopUpButton!
@@ -73,7 +72,7 @@ class DisplaysPrefsCellView: NSTableCellView {
       }
     }
   }
-
+  
   @IBAction func pollingCountValueChanged(_ sender: NSTextFieldCell) {
     if let display = display as? OtherDisplay {
       let newValue = sender.stringValue

@@ -31,23 +31,6 @@ class OtherDisplay: Display {
     if !isVirtual, !Arm64DDC.isArm64 {
       self.ddc = IntelDDC(for: identifier)
     }
-    var command_inputSelect: Command
-    command_inputSelect = Command.inputSelect
-    let  firstrun = false
-    var maxDDCValue = UInt16(DDC_MAX_DETECT_LIMIT)
-    var currentValue = UInt16(0)
-    var currentDDCValue = UInt16(0)
-    let delay = self.readPrefAsBool(key: .longerDelay) ? UInt64(40 * kMillisecondScale) : nil
-    var ddcValues: (UInt16, UInt16)?
-    ddcValues = self.readDDCValues(for: .inputSelect, tries: 5, minReplyDelay: delay)
-    if ddcValues != nil {
-      (currentDDCValue, maxDDCValue) = ddcValues ?? (currentDDCValue, maxDDCValue)
-      self.processCurrentDDCValue(isReadFromDisplay: true, command: command_inputSelect, firstrun: firstrun, currentDDCValue: currentDDCValue)
-      os_log("- DDC command_inputSelect read successful.", type: .info)
-      super.inputSource = currentDDCValue
-    } else {
-      os_log("- DDC command_inputSelect read failed.", type: .info)
-    }
   }
 
   func processCurrentDDCValue(isReadFromDisplay: Bool, command: Command, firstrun: Bool, currentDDCValue: UInt16) {
@@ -131,7 +114,7 @@ class OtherDisplay: Display {
           os_log("- DDC read failed.", type: .info)
         }
       } else {
-        os_log("- DDC read disabled.", type: .info)
+        os_log("- DDC read disabled prefs.integer(forKey: PrefKey.startupAction.rawValue) = %{public}@   StartupAction.read.rawValue = %{public}@", type: .info, String(prefs.integer(forKey: PrefKey.startupAction.rawValue)), String(StartupAction.read.rawValue))
       }
       if self.readPrefAsInt(key: .maxDDCOverride, for: command) > self.readPrefAsInt(key: .minDDCOverride, for: command) {
         self.savePref(self.readPrefAsInt(key: .maxDDCOverride, for: command), key: .maxDDC, for: command)
@@ -528,5 +511,27 @@ class OtherDisplay: Display {
 
   func combinedBrightnessSwitchingValue() -> Float {
     Float(self.readPrefAsInt(key: .combinedBrightnessSwitchingPoint) + 8) / 16
+  }
+  override func getInputSource() -> UInt16 {
+    if self.pollingCount != 0, !app.safeMode {
+      var command_inputSelect: Command
+      command_inputSelect = Command.inputSelect
+      var maxDDCValue = UInt16(DDC_MAX_DETECT_LIMIT)
+      var currentDDCValue = UInt16(0)
+      let delay = self.readPrefAsBool(key: .longerDelay) ? UInt64(40 * kMillisecondScale) : nil
+      var ddcValues: (UInt16, UInt16)?
+      ddcValues = self.readDDCValues(for: command_inputSelect, tries: UInt(self.pollingCount), minReplyDelay: delay)
+      if ddcValues != nil {
+        (currentDDCValue, maxDDCValue) = ddcValues ?? (currentDDCValue, maxDDCValue)
+        os_log("- DDC command_inputSelect read successful.currentDDCValue = %{public}@ maxDDCValue = %{public}@", type: .info, String(currentDDCValue), String(maxDDCValue))
+        super.inputSource = currentDDCValue
+        return currentDDCValue
+      } else {
+        os_log("- DDC command_inputSelect read failed.", type: .info)
+      }
+    } else {
+      os_log("- DDC read disabled prefs.integer(forKey: PrefKey.startupAction.rawValue) = %{public}@   StartupAction.read.rawValue = %{public}@", type: .info, String(prefs.integer(forKey: PrefKey.startupAction.rawValue)), String(StartupAction.read.rawValue))
+    }
+    return UInt16(0)
   }
 }

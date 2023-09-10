@@ -1874,7 +1874,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsExpansionToolTips="YES" id="XnY-ff-gZG">
-                                                                    <rect key="frame" x="210" y="353" width="166" height="16"/>
+                                                                    <rect key="frame" x="210" y="353" width="46" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="#bc-ignore!" id="3Sa-H4-E30">
                                                                         <font key="font" metaFont="system"/>
@@ -1891,6 +1891,22 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YGa-73-vwn" userLabel="InputSelect">
+                                                                    <rect key="frame" x="274" y="345" width="109" height="25"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <popUpButtonCell key="cell" type="push" title="DisplayPort" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8k5-he-X72" id="gG6-9z-ygg" userLabel="InputSelect">
+                                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="menu"/>
+                                                                        <menu key="menu" id="N9Z-Wx-Nhd">
+                                                                            <items>
+                                                                                <menuItem title="DisplayPort" state="on" id="8k5-he-X72"/>
+                                                                                <menuItem title="HDMI1" tag="1" id="EZo-gh-bJO"/>
+                                                                                <menuItem title="HDMI2" tag="2" id="yiX-Us-RLs"/>
+                                                                                <menuItem title="TypeC" tag="3" id="j6C-gB-obC"/>
+                                                                            </items>
+                                                                        </menu>
+                                                                    </popUpButtonCell>
+                                                                </popUpButton>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="ihQ-SK-x7Y" firstAttribute="top" secondItem="1PG-t6-jkR" secondAttribute="bottom" constant="50" id="lYu-y9-iVv"/>

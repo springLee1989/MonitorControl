@@ -21,6 +21,9 @@ enum PrefKey: String {
   // Menu item style
   case menuItemStyle
 
+  // menu Input Source
+  case menuInputSource
+  
   // Keys listened for
   case keyboardBrightness
 

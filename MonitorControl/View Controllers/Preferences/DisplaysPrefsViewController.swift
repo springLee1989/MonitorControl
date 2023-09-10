@@ -150,8 +150,9 @@ class DisplaysPrefsViewController: NSViewController, PreferencePane, NSTableView
     let display = self.displays[row]
     if let cell = tableView.makeView(withIdentifier: tableColumn.identifier, owner: nil) as? DisplaysPrefsCellView {
       cell.display = display
-
-      cell.inputSource.stringValue = String(display.inputSource)
+      
+      // InputSource
+      cell.inputSource.stringValue = String(display.getInputSource())
       // ID
       cell.displayId.stringValue = String(display.identifier)
       // Firendly name

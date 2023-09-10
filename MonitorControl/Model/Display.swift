@@ -349,4 +349,7 @@ class Display: Equatable {
       return false
     }
   }
+  func getInputSource() -> UInt16 {
+    return UInt16(0)
+  }
 }
