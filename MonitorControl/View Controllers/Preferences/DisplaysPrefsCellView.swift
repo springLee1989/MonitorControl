@@ -220,6 +220,7 @@ class DisplaysPrefsCellView: NSTableCellView {
       var currentDDCValue = UInt16(18)
       var selectedTag = sender.selectedTag()
       switch selectedTag {
+      case 1: currentDDCValue = UInt16(17)
       case 2: currentDDCValue = UInt16(18)
       case 4: currentDDCValue = UInt16(15)
       default: currentDDCValue = UInt16(0)
